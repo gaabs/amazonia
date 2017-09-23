@@ -1,0 +1,18 @@
+@import models.entities.Product
+@(products: Set[Product])
+    @main("Products Catalogue") {
+        <h1>All Products</h1>
+        <dl>
+        @for(product <- products) {
+            <dt>
+                <a href="@routes.ProductsController.show(product.id)">
+                    @product.id - @product.name
+                </a>
+            </dt>
+            <dd>@product.description</dd>
+        }
+        </dl>
+
+        <a href="@routes.ProductsController.showBlank()" class="btn">
+            <i class="icon-plus"></i> New product</a>
+    }

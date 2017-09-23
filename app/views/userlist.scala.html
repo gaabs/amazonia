@@ -1,0 +1,18 @@
+@import models.entities.User
+
+@(users: Set[User])
+@main("Users Registered") {
+    <h1>All Users</h1>
+    <dl>
+    @for(user <- users) {
+        <dt>
+            <a href="@routes.UserController.show(user.id)">
+            @user.name
+            </a>
+        </dt>
+    }
+    </dl>
+
+    <a href="@routes.UserController.showBlank" class="btn">
+        <i class="icon-plus"></i> New user</a>
+}
