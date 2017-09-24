@@ -12,7 +12,7 @@ public class ProductControl {
         this.productCollection = productCollection;
     }
 
-    public Set<Product> findAll(){
+    public Set<Product> findAll() {
         return productCollection.findAll();
     }
 
@@ -24,17 +24,19 @@ public class ProductControl {
         return productCollection.create(product);
     }
 
-    public boolean update(Product product){
+    public boolean update(Product product) {
         return productCollection.update(product);
     }
 
-    public void decrementQuantity(Product product){
+    public void decrementQuantity(Product product) {
         productCollection.decrementQuantity(product);
     }
 
-    public void incrementQuantity(Product product){
-        productCollection.incrementQuantity(product);   
+    public void incrementQuantity(Product product) {
+        productCollection.incrementQuantity(product);
     }
 
-    
+    public Set<Product> find(String name, String category) {
+        return productCollection.find(name, category);
+    }
 }

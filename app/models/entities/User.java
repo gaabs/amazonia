@@ -1,11 +1,10 @@
 package models.entities;
 
 public class User {
-
     public Integer id;
     public String name;
+    public String email;
     public String password;
-    public Integer numberOfPuchases;
 
     public User() {
     }
@@ -14,15 +13,10 @@ public class User {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.numberOfPuchases = 0;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
-    }
-
-    public void addPuchase(){
-        this.numberOfPuchases++;
     }
 
     public String toString() {

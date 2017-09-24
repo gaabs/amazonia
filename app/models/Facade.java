@@ -45,6 +45,10 @@ public class Facade {
         return productControl.create(product);
     }
 
+    public Set<Product> findProducts(String name, String category) {
+        return productControl.find(name, category);
+    }
+
     public Set<User> userList() {
         return userControl.list();
     }
@@ -56,4 +60,5 @@ public class Facade {
     public boolean createUser(User user) {
         return userControl.create(user);
     }
+
 }

@@ -1,12 +1,12 @@
 package models.entities;
 
 public class Product {
-
     public Integer id;
     public String name;
     public String description;
     public Double price;
     public Integer quantity;
+    public String category;
 
     public Product() {
         //
@@ -42,11 +42,11 @@ public class Product {
         this.description = description;
     }
 
-    public void setPrice(Double price){
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public void getPrice(){
+    public Double getPrice() {
         return this.price;
     }
 

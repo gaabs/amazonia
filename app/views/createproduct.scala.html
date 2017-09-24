@@ -1,0 +1,16 @@
+@import models.entities.Product
+@(productForm: Form[Product])
+
+@main("Product Form") {
+    <h1>Product Form</h1>
+    @helper.form(action = helper.CSRF(routes.ProductsController.save())) {
+        <fieldset>
+            <legend>Product @productForm("name").valueOr("(New Product)")</legend>
+            @helper.inputText(productForm("Id"))
+            @helper.inputText(productForm("Name"))
+            @helper.inputText(productForm("Category"))
+            @helper.textarea(productForm("Description"))
+        </fieldset>
+        <input type="Submit" class="btn primary">
+    }
+}

@@ -3,7 +3,9 @@ package models.collections;
 import models.entities.Product;
 import models.repositories.ProductRepository;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ProductCollection {
     private ProductRepository productRepository;
@@ -26,9 +28,17 @@ public class ProductCollection {
         productRepository.update(product);
     }
 
-
     public Set<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    public Set<Product> find(String name, String category) {
+        return productRepository
+                .findAll()
+                .stream()
+                .filter(product -> name == null || product.name.toLowerCase().contains(name.toLowerCase()))
+                .filter(product -> category == null || product.category.equalsIgnoreCase(category))
+                .collect(Collectors.toCollection(HashSet::new));
     }
 
     public Product findById(Integer id) {
@@ -39,7 +49,7 @@ public class ProductCollection {
         return productRepository.create(product);
     }
 
-    public boolean update(Product product){
+    public boolean update(Product product) {
         return productRepository.update(product);
     }
 }
