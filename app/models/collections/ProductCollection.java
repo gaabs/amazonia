@@ -38,4 +38,8 @@ public class ProductCollection {
     public boolean create(Product product) {
         return productRepository.create(product);
     }
+
+    public boolean update(Product product){
+        return productRepository.update(product);
+    }
 }

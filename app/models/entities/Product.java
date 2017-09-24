@@ -42,6 +42,14 @@ public class Product {
         this.description = description;
     }
 
+    public void setPrice(Double price){
+        this.price = price;
+    }
+
+    public void getPrice(){
+        return this.price;
+    }
+
     public String toString() {
         return String.format("%s - %s", id, name);
     }

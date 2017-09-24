@@ -23,4 +23,18 @@ public class ProductControl {
     public boolean create(Product product) {
         return productCollection.create(product);
     }
+
+    public boolean update(Product product){
+        return productCollection.update(product);
+    }
+
+    public void decrementQuantity(Product product){
+        productCollection.decrementQuantity(product);
+    }
+
+    public void incrementQuantity(Product product){
+        productCollection.incrementQuantity(product);   
+    }
+
+    
 }
