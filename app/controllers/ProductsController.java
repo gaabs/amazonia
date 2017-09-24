@@ -27,11 +27,6 @@ public class ProductsController extends Controller {
         return ok(productlist.render(setOfProducts));
     }
 
-    public Result search(String name, String category) {
-        Set<Product> setOfProducts = facade.findProducts(name, category);
-        return ok(productlist.render(setOfProducts));
-    }
-
     public Result showBlank() {
         Form<Product> productForm = formFactory.form(Product.class);
         return ok(views.html.createproduct.render(productForm));
@@ -50,7 +45,19 @@ public class ProductsController extends Controller {
     public Result save() {
         Product product = formFactory.form(Product.class).bindFromRequest().get();
         facade.createProduct(product);
-        return ok("Saved product: " + product);
+        //return ok("Saved product: " + product);
+        return list();
+    }
+
+    public Result searchBlank() {
+        Form<Product> productForm = formFactory.form(Product.class);
+        return ok(views.html.searchproduct.render(productForm));
+    }
+
+    public Result search() {
+        Product product = formFactory.form(Product.class).bindFromRequest().get();
+        Set<Product> setOfProducts = facade.findProducts(product.name, product.category);
+        return ok(productlist.render(setOfProducts));
     }
 
 }

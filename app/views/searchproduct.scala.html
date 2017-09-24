@@ -3,13 +3,11 @@
 
 @main("Product Form") {
     <h1>Product Form</h1>
-    @helper.form(action = helper.CSRF(routes.ProductsController.save())) {
+    @helper.form(helper.CSRF(routes.ProductsController.search())) {
         <fieldset>
-            <legend>Product @productForm("name").valueOr("(New Product)")</legend>
-            @helper.inputText(productForm("Id"))
+            <legend>Product @productForm("name").valueOr("(Search Product)")</legend>
             @helper.inputText(productForm("Name"))
             @helper.inputText(productForm("category"))
-            @helper.textarea(productForm("Description"))
         </fieldset>
         <input type="Submit" class="btn primary">
     }

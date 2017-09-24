@@ -1,5 +1,6 @@
 package models.collections;
 
+import com.google.common.base.Strings;
 import models.entities.Product;
 import models.repositories.ProductRepository;
 
@@ -36,8 +37,8 @@ public class ProductCollection {
         return productRepository
                 .findAll()
                 .stream()
-                .filter(product -> name == null || product.name.toLowerCase().contains(name.toLowerCase()))
-                .filter(product -> category == null || product.category.equalsIgnoreCase(category))
+                .filter(product -> Strings.isNullOrEmpty(name) || product.name.toLowerCase().contains(name.toLowerCase()))
+                .filter(product -> Strings.isNullOrEmpty(category) || product.category.equalsIgnoreCase(category))
                 .collect(Collectors.toCollection(HashSet::new));
     }
 
