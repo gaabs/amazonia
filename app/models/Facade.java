@@ -53,12 +53,16 @@ public class Facade {
         return userControl.list();
     }
 
-    public User findUserById(Integer id) {
-        return userControl.findById(id);
+    public User findUserByEmail(String email) {
+        return userControl.findByEmail(email);
     }
 
     public boolean createUser(User user) {
         return userControl.create(user);
+    }
+
+    public boolean login(User user) {
+        return userControl.login(user.email, user.password);
     }
 
 }
