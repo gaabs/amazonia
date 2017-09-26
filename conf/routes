@@ -21,5 +21,7 @@ POST        /products                      controllers.ProductsController.save()
 
 GET         /users                         controllers.UserController.list
 GET         /users/new                     controllers.UserController.showBlank
-GET         /users/:id                     controllers.UserController.show(id: Integer)
+GET         /users/login                   controllers.UserController.loginForm
+GET         /users/login/                  controllers.UserController.login
+GET         /users/:email                  controllers.UserController.show(email: String)
 POST        /users                         controllers.UserController.save()

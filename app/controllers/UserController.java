@@ -6,7 +6,6 @@ import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.showuser;
 import views.html.userlist;
 
 import javax.inject.Inject;
@@ -30,23 +29,37 @@ public class UserController extends Controller {
 
     public Result showBlank() {
         Form<User> userForm = formFactory.form(User.class);
-        return ok(showuser.render(userForm));
+        return ok(views.html.usercreate.render(userForm));
     }
 
-    public Result show(Integer id) {
-        User user = facade.findUserById(id);
+    public Result show(String email) {
+        User user = facade.findUserByEmail(email);
         if (user == null) {
-            return notFound("User " + id + " does not exist.");
+            return notFound("User " + email + " does not exist.");
         }
         Form<User> userForm = formFactory.form(User.class);
         Form<User> filledForm = userForm.fill(user);
-        return ok(showuser.render(filledForm));
+        return ok(views.html.usercreate.render(filledForm));
     }
 
     public Result save() {
         User user = formFactory.form(User.class).bindFromRequest().get();
         facade.createUser(user);
         return ok("Saved user: " + user);
+    }
+
+    public Result loginForm() {
+        Form<User> userForm = formFactory.form(User.class);
+        return ok(views.html.userlogin.render(userForm));
+    }
+
+    public Result login() {
+        User user = formFactory.form(User.class).bindFromRequest().get();
+        if (!facade.login(user)) {
+            return notFound("User not found.");
+        }
+
+        return ok("Logged user: " + user);
     }
 
 }

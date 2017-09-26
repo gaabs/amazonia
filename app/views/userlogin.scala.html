@@ -1,0 +1,14 @@
+@import models.entities.User
+@(userForm: Form[User])
+
+@main("User Form") {
+    <h1>User Form</h1>
+    @helper.form(action = helper.CSRF(routes.UserController.login())) {
+        <fieldset>
+            <legend>User @userForm("name").valueOr("(User Login)")</legend>
+            @helper.inputText(userForm("Email"))
+            @helper.inputText(userForm("Password"))
+        </fieldset>
+        <input type="Submit" class="btn primary">
+    }
+}

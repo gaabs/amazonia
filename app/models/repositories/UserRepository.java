@@ -16,15 +16,6 @@ public class UserRepository {
         return new HashSet<>(users);
     }
 
-    public User findById(Integer id) {
-        for (User user : users) {
-            if (user.id.equals(id)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
     public Set<User> findByName(String term) {
         final Set<User> results = new HashSet<User>();
         for (User user : users) {
@@ -35,7 +26,6 @@ public class UserRepository {
         return results;
     }
 
-
     public boolean create(User user) {
         return users.add(user);
     }
@@ -45,7 +35,7 @@ public class UserRepository {
     }
 
     public boolean update(User user) {
-        User oldUser = findById(user.id);
+        User oldUser = findByEmail(user.email);
         if (oldUser == null) {
             return false;
         }
@@ -54,5 +44,12 @@ public class UserRepository {
         oldUser.password = user.password;
 
         return true;
+    }
+
+    public User findByEmail(String email) {
+        return users.stream()
+                .filter(user -> user.email.equalsIgnoreCase(email))
+                .findFirst()
+                .orElse(null);
     }
 }

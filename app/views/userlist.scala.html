@@ -6,7 +6,7 @@
     <dl>
     @for(user <- users) {
         <dt>
-            <a href="@routes.UserController.show(user.id)">
+            <a href="@routes.UserController.show(user.email)">
             @user.name
             </a>
         </dt>

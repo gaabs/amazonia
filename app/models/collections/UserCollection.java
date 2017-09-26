@@ -20,9 +20,7 @@ public class UserCollection {
         return userRepository.findAll();
     }
 
-    public User findById(Integer id) {
-        return userRepository.findById(id);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
-
-
 }
