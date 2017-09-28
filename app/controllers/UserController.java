@@ -33,6 +33,9 @@ public class UserController extends Controller {
     }
 
     public Result show(String email) {
+        if(email==null){
+            return notFound("User " + email + " does not exist.");
+        }
         User user = facade.findUserByEmail(email);
         if (user == null) {
             return notFound("User " + email + " does not exist.");

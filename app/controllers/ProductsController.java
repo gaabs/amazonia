@@ -33,6 +33,9 @@ public class ProductsController extends Controller {
     }
 
     public Result show(Integer id) {
+        if(id==null){
+            return notFound("Product " + id + " does not exist.");
+        }
         Product product = facade.findProductById(id);
         if (product == null) {
             return notFound("Product " + id + " does not exist.");
